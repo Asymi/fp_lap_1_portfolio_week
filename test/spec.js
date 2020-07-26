@@ -7,3 +7,10 @@ it('Main page content', function(done) {
         done();
     });
 });
+
+it('Main page status', function(done) {
+    request('http://localhost:3000' , function(error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        done();
+    });
+});
