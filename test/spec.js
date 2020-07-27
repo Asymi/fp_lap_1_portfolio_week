@@ -15,15 +15,6 @@ it('Main page status', function(done) {
     });
 });
 
-describe ('index', function() {
-    it('status', function(done){
-        request('http://localhost:3000/index', function(error, response, body) {
-            expect(response.statusCode).to.equal(200);
-            done();
-        });
-    });
-});
-
 /*
  * Server handle post requests
  */
