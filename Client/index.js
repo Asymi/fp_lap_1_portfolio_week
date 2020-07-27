@@ -13,10 +13,10 @@
     // Displays search bar/button for GIPHY when clicked
     function showGIPHY() {
         let x = document.querySelector(".GIPHYSearchInputContainer");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
+    if (x.style.display === "block") {
         x.style.display = "none";
+    } else {
+        x.style.display = "block";
     }
     }
     
