@@ -93,9 +93,10 @@
 
         let postTitle = document.getElementById("postTitle").value;
         let postBody = document.getElementById("postBody").value;
+        let gifUrl = document.getElementById('postGIF').src;
 
         // Creating post object to store user post
-        let post = {title: postTitle, body: postBody, gifUrl: "#"}
+        let post = {title: postTitle, body: postBody, gifUrl: gifUrl}
 
         let options = {
             method: 'POST',
