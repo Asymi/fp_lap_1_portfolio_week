@@ -45,9 +45,11 @@
         document.getElementById('thumbs').appendChild(img);
     }  
 
+    // Function to return selected GIF to the thumbnails
     function GIFReturn(){
         const img = document.getElementById("postGIF");
         img.className = "GIPHYResult";
+        img.id = "";
         img.setAttribute('onclick','GIFClick(this)');
         document.getElementById('thumbs').appendChild(img);
         numberOfThumbs ++;
