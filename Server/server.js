@@ -1,16 +1,14 @@
 const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser')
-
-const server = express()
-server.use(cors());
-server.use(bodyParser.text());
-
+const app = express();
 const port = 3000;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const e = require('express');
+app.use(bodyParser.text());
+app.use(cors());
 
-const requestListener = function (req, res) {
-    res.writeHead(200);
-    console.log(`We are live at http://localhost:${port}`);
-};
 
-server.listen(port, requestListener);
+app.get('/', (req, res) => res.send('Hello, client!'))
+
+// To do: Get the server running
+app.listen(port, () => console.log(`Express now now running from http://localhost:${port}!`))
