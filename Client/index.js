@@ -32,6 +32,7 @@
          document.querySelector('#userInput').appendChild(img);
          img.id = "postGIF";
          let postGIF = document.getElementById("postGIF").src;
+         img.setAttribute('onclick', 'GIFReturn(this)');
          numberOfThumbs --;
     }}
     
@@ -43,6 +44,14 @@
         img.setAttribute('onclick','GIFClick(this)');
         document.getElementById('thumbs').appendChild(img);
     }  
+
+    function GIFReturn(){
+        const img = document.getElementById("postGIF");
+        img.className = "GIPHYResult";
+        img.setAttribute('onclick','GIFClick(this)');
+        document.getElementById('thumbs').appendChild(img);
+        numberOfThumbs ++;
+    }
     
     let numberOfThumbs = 0; //this is a variable storing how many gifs can be selected (to only allow one to be selected)
     // Chained function with appendImage
