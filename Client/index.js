@@ -28,12 +28,12 @@
     }
     
     // Appends clicked GIF to journal entry form
-    function GIFClick(img){
+    function GIFClick(img){ if (numberOfThumbs >=6 ){
          document.querySelector('#userInput').appendChild(img);
          img.id = "postGIF";
          let postGIF = document.getElementById("postGIF").src;
-         //article.appendChild(img);
-    }
+         numberOfThumbs --;
+    }}
     
     // appends the six GIFs returned from search into a div to be selected
     function appendImage(giphy) { 
@@ -44,10 +44,12 @@
         document.getElementById('thumbs').appendChild(img);
     }  
     
+    let numberOfThumbs = 0; //this is a variable storing how many gifs can be selected (to only allow one to be selected)
     // Chained function with appendImage
     function gotData(data) {
         for (let i = 0; i < data.data.length; i++) {
         appendImage(data.data[i].images.original.url)
+        numberOfThumbs ++;
         }
     }
     
