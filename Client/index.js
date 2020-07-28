@@ -2,8 +2,36 @@ const url = "http://localhost:3000/posts"
 // Grab relevant HTML elements
 const postContainer = document.getElementById("postContainer");
 
-// Insert previous posts into postContainer
+// Insert previous posts into postContainer -------------------------------------------------------------------------------------------------- //
+fetch('http://localhost:3000/posts')
+     .then(r => r.json())
+     .then(jsonData => insertPost(jsonData))
+     .catch(console.warn);
 
+    function insertPost(post){
+        for (let i = 0; i <= post.length; i++) {
+        let postObject = post[i]; 
+
+        let article = document.createElement("article");
+        let articleHead = document.createElement("h1");
+        let articleBody = document.createElement("p");
+        let articleGIF = document.createElement("img")
+
+ 
+
+            let titles = postObject.title;
+            let bodys = postObject.body;
+            let gif = postObject.gifUrl;
+            articleGIF.src = gif;
+            articleHead.textContent = titles;
+            articleBody.textContent = bodys;
+            article.appendChild(articleHead);
+            article.appendChild(articleBody);
+            article.appendChild(articleGIF);
+            postContainer.appendChild(article);
+        }}
+    
+    
 
 // GIF FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- // 
 const GIPHYForm = document.getElementById('GIPHYSearchForm')
@@ -111,8 +139,11 @@ document.addEventListener("submit", e => {
     document.getElementById('thumbs').style.position = 'absolute';
 
     // Clear text from input forms
-    document.getElementById("postTitle").value = "";
-    postBody = document.getElementById("postBody").value = "";
+    // let searchForm = document.getElementById('userInput').reset();
+    location.reload(); 
+
+    
+    
 });
 // ADD NEW POST FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
 
@@ -125,9 +156,10 @@ document.addEventListener("submit", e => {
 
     let postTitle = document.getElementById("postTitle").value;
     let postBody = document.getElementById("postBody").value;
+    let gifUrl = document.getElementById("postGIF").src;
 
     // Creating post object to store user post
-    let post = {title: postTitle, body: postBody, gifUrl: "gifUrl"}
+    let post = {title: postTitle, body: postBody, gifUrl: gifUrl}
 
     let options = {
         method: 'POST',
@@ -212,3 +244,5 @@ function countCharacters() {
 
 postTitle.addEventListener('keydown', countCharacters);
 // EMOJI FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
+
+
