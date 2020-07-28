@@ -87,23 +87,51 @@ document.addEventListener("submit", e => {
     // Ensure you use .value to access the input the user makes
     let postTitle = document.getElementById("postTitle").value;
     let postBody = document.getElementById("postBody").value;
-    let gifUrl = document.getElementById('postGIF').src;
+    // Only grabs a gif if the user has attached one
+    if (document.getElementById('postGIF')){
+        let gifUrl = document.getElementById('postGIF').src;
+    }
 
-    // Update page with new post - create article, h2, and p tags for new post
+    // Update page with new post - create article, h2, p, and emojis for new post
     let article = document.createElement("article");
     let articleHead = document.createElement("h2");
     let articleBody = document.createElement("p");
     let articleGIF = document.createElement("img");
+    let emojiContainer = document.createElement("div");
+    let loveEmoji = document.createElement("img");
+    let cryEmoji = document.createElement("img");
+    let laughEmoji = document.createElement("img");
 
     // Populate elements
     articleHead.textContent = postTitle;
     articleBody.textContent = postBody;
-    articleGIF = postGIF;
+    // Only assigns gif if the user has attached one
+    if (document.getElementById('postGIF')){
+        articleGIF = postGIF;
+    }
+
+    // Set attributes
+    loveEmoji.setAttribute('src','Assets/love.png');
+    loveEmoji.setAttribute('id','love');
+    cryEmoji.setAttribute('src','Assets/cry.png');
+    cryEmoji.setAttribute('id','cry');
+    laughEmoji.setAttribute('src','Assets/laugh.png');
+    laughEmoji.setAttribute('id','laugh');
+    emojiContainer.setAttribute('id','emojiContainer');
+
+    // Adding emojis to their container
+    emojiContainer.appendChild(loveEmoji);
+    emojiContainer.appendChild(cryEmoji);
+    emojiContainer.appendChild(laughEmoji);
 
     // Append title, body and image to article
     article.appendChild(articleHead);
     article.appendChild(articleBody);
     article.appendChild(articleGIF);
+    // Only display emojis if the user posts something
+    if (articleHead.textContent !== "" || articleBody.textContent !== ""){
+        article.appendChild(emojiContainer);
+    }
     postContainer.appendChild(article);
 
     // Make gif menu not invisible upon posting
@@ -141,7 +169,7 @@ document.addEventListener("submit", e => {
     .then(r => r.json())
     .catch(console.warn);
 
-    displayEmoji()
+    //displayEmoji()
 });
 // SEND TO SERVER FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
 
@@ -159,43 +187,47 @@ discard.addEventListener("click", e => {
 // DISCARD FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
 
 
+
 // EMOJI FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- //
-const laugh = document.querySelector('#laugh');
-const love = document.querySelector('#love');
-const cry = document.querySelector('#cry');
+// const laugh = document.querySelector('#laugh');
+// const love = document.querySelector('#love');
+// const cry = document.querySelector('#cry');
 
-let laughCount = 0;
-let loveCount = 0;
-let cryCount = 0;
+// let laughCount = 0;
+// let loveCount = 0;
+// let cryCount = 0;
 
-const accumulateLaughCounts = () => {
-    laughCount++;
-    const totalCounts = document.querySelector('.laugh-count');
-    totalCounts.textContent = laughCount; 
-}
+// const accumulateLaughCounts = () => {
+//     laughCount++;
+//     const totalCounts = document.querySelector('.laugh-count');
+//     totalCounts.textContent = laughCount; 
+// }
 
-const accumulateLoveCounts = () => {
-    loveCount++;
-    const totalCounts = document.querySelector('.love-count');
-    totalCounts.textContent = loveCount; 
-}
+// const accumulateLoveCounts = () => {
+//     loveCount++;
+//     const totalCounts = document.querySelector('.love-count');
+//     totalCounts.textContent = loveCount; 
+// }
 
-const accumulateCryCounts = () => {
-    cryCount++;
-    const totalCounts = document.querySelector('.cry-count');
-    totalCounts.textContent = cryCount; 
-}
+// const accumulateCryCounts = () => {
+//     cryCount++;
+//     const totalCounts = document.querySelector('.cry-count');
+//     totalCounts.textContent = cryCount; 
+// }
 
-love.addEventListener('click', accumulateLoveCounts);
-laugh.addEventListener('click', accumulateLaughCounts);
-cry.addEventListener('click', accumulateCryCounts);
+// love.addEventListener('click', accumulateLoveCounts);
+// laugh.addEventListener('click', accumulateLaughCounts);
+// cry.addEventListener('click', accumulateCryCounts);
 
 
-function displayEmoji() {
-    document.querySelector('#emojis').style.visibility = "visible"
-};
+// function displayEmoji() {
+//     document.querySelector('#emojis').style.visibility = "visible"
+// };
+// EMOJI FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
 
-// Character Count
+
+
+// CHARACTER COUNT FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- //
 const titleCharacter = document.querySelector('.title-count');
 let postTitle = document.getElementById("postTitle");
 
@@ -211,4 +243,4 @@ function countCharacters() {
 }
 
 postTitle.addEventListener('keydown', countCharacters);
-// EMOJI FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
+// CHARACTER COUTN FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //

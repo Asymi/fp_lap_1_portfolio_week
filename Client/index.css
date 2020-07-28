@@ -1,3 +1,4 @@
+/* GENERAL CSS START --------------------------------------------------------------------------------------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 body {
@@ -13,21 +14,23 @@ body {
     overflow: auto;
     width: 300px !important;
 }
+/* GENERAL CSS END --------------------------------------------------------------------------------------------------------------------------------------- */
 
-#emojis {
+
+
+/* EMOJI CSS START --------------------------------------------------------------------------------------------------------------------------------------- */
+/* #emojis {
     visibility: hidden;
     display: flex;
     justify-content: center;
     margin: 30px;
 }
 
+*/
 #laugh, #love, #cry{
-    width: 100%;
+    width: 20%;
 }
-
-#laugh img, #love img, #cry img{
-    width: 9%;
-}
+/*
 
 .laugh-count, .love-count, .cry-count {
     font-size: 16px;
@@ -53,9 +56,17 @@ body {
     80% {
         transform: translateY(0px);
     }
+} */
+
+#emojiContainer {
+    width: 10vw;
+    display: inline-flex;
 }
+/* EMOJI CSS END --------------------------------------------------------------------------------------------------------------------------------------- */
 
 
+
+/* GIPHY CSS START --------------------------------------------------------------------------------------------------------------------------------------- */
 #GIPHYButtonContainer {
     width: 300px;
     background-color: black;
@@ -73,3 +84,4 @@ body {
     width: 200px;
     height: 200px;
 }
+/* GIPHY CSS END --------------------------------------------------------------------------------------------------------------------------------------- */
