@@ -13,17 +13,19 @@ document.addEventListener("DOMContentLoaded", e => {
     function insertPost(post){
         const postObject = post 
 
-        let articleHead = document.getElementById("#h2");
-        let articleBody = document.getElementById("#p");
+        let article = document.createElement("article");
+        let articleHead = document.createElement("h1");
+        let articleBody = document.createElement("p");
 
-        var store = []; 
-        for (const elem in postObject) {
+        let store = []; 
+        for (const elem in postObject) { 
             const titles = (postObject[elem].title);
             const bodys = (postObject[elem].body);
-            store.push(titles); 
-            store.push(bodys); 
-        postContainer.textContent +=  titles + bodys ; 
-
+            articleHead.textContent = titles;
+            articleBody.textContent = bodys;
+            article.appendChild(articleHead);
+            article.appendChild(articleBody);
+            postContainer.appendChild(article);
         }
     }
     
