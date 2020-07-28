@@ -47,5 +47,13 @@ server.post('/posts', (req, res) => {
 })
 
 
+<<<<<<< HEAD
+=======
+const requestListener = function (req, res) {
+    res.writeHead(200);
+    console.log(`We are live at http://localhost:${port}`);
+};
+//test
+>>>>>>> 772f503dbc5867762ef7256a2c864cf77feb3559
 
 server.listen(port, () => console.log(`We are live at http://localhost:${port}`));
