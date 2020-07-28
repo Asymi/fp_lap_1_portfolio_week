@@ -13,18 +13,18 @@ document.addEventListener("DOMContentLoaded", e => {
     function insertPost(post){
         const postObject = post 
 
+        let articleHead = document.getElementById("#h2");
+        let articleBody = document.getElementById("#p");
+
         var store = []; 
         for (const elem in postObject) {
-            const titles = JSON.stringify(postObject[elem].title);
-            const bodys = JSON.stringify(postObject[elem].body);
+            const titles = (postObject[elem].title);
+            const bodys = (postObject[elem].body);
             store.push(titles); 
             store.push(bodys); 
-            
-        }
-        for (let i = 0; i < store.length; i++){
-            postContainer.textContent += store[i];
-        }
+        postContainer.textContent +=  titles + bodys ; 
 
+        }
     }
     
     // Upon submit, display user input on current page
