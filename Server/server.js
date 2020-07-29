@@ -10,7 +10,7 @@ server.use(bodyParser.text());
 
 const port = 3000;
 
-// Initilise posts, an array of objects with {title: "", body:"", image:""} from external JSON File. 
+// Initilise posts, an array of objects with {title: "", body:"", image:"", comments: []} from external JSON File. 
 const data = fs.readFileSync('data.JSON');
 const posts = JSON.parse(data);
 
@@ -33,23 +33,20 @@ server.get('/posts', (req, res) => res.send(JSON.stringify(posts)));
 server.post('/posts', (req, res) => {
     const newPost = JSON.parse(req.body); 
     posts.push(newPost);
-    console.log(posts)
     let data = JSON.stringify(posts, null, 2);
     fs.writeFileSync('data.JSON', data) 
 })
 
-// Comment route
-
+// Write get request for comments
 server.get('/comments', (req, res) => res.send(JSON.stringify(posts)));
 
-// post comments
+// Write post request that will add a comment to the comments variable and appends it to to the JSON file
 server.post('/comments', (req, res) => {
     let newComment = req.body
     let i = newComment.slice(-2, -1);
     newComment = newComment.slice(1, -2);
 
     posts[i].comments.push(newComment);
-    console.log(posts)
     let data = JSON.stringify(posts, null, 2);
     fs.writeFileSync('data.JSON', data)
 

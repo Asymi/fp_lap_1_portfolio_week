@@ -38,5 +38,13 @@
       "Fourth Comment",
       "too"
     ]
+  },
+  {
+    "title": "Fifth Post",
+    "body": "Here's a little description of the fifth post. High 5!",
+    "gifUrl": "https://media0.giphy.com/media/3oEjHV0z8S7WM4MwnK/giphy.gif?cid=abae41c195vfvc4yfrx54iq1luji0rcr7qb9tyd5bsjhnoxz&rid=giphy.gif",
+    "comments": [
+      "lets get it!"
+    ]
   }
 ]
