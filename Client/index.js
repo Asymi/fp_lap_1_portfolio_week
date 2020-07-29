@@ -15,9 +15,37 @@ fetch('http://localhost:3000/posts')
         let article = document.createElement("article");
         let articleHead = document.createElement("h1");
         let articleBody = document.createElement("p");
-        let articleGIF = document.createElement("img")
+        let articleGIF = document.createElement("img");
 
- 
+
+// Initialise comment form and comment container (to view all comments), append into postContainer -------------------------------------------------------------------------------- //
+
+        let commentForm = document.createElement("form");
+        let commentField = document.createElement("input");
+        let commentSubmit = document.createElement("input");
+        let commentContainer = document.createElement("section"); //Creates section where all comments can be viewed
+        commentContainer.id = `commentContainer${i}`;
+        commentForm.id = `commentForm${i}`;
+        commentField.setAttribute("type", "text");
+        commentField.id = `commentField${i}`;
+        commentSubmit.setAttribute("type", "button");
+        commentSubmit.setAttribute("value", "Click to add comment");
+        commentSubmit.setAttribute("onclick", "postComment(this)")
+        commentSubmit.id = `commentSubmit${i}`;
+
+
+        commentForm.appendChild(commentField);
+        commentForm.appendChild(commentSubmit);
+
+        // Display previous comments
+        let previousComments = postObject.comments;
+        for (let i = 0; i <= previousComments.length; i++) {
+            let commentElement = document.createElement("p")
+            let comment = postObject.comments[i];
+            commentElement.textContent = comment;
+            commentContainer.appendChild(commentElement);
+        }
+
 
             let titles = postObject.title;
             let bodys = postObject.body;
@@ -29,6 +57,8 @@ fetch('http://localhost:3000/posts')
             article.appendChild(articleBody);
             article.appendChild(articleGIF);
             postContainer.appendChild(article);
+            postContainer.appendChild(commentForm);
+            postContainer.appendChild(commentContainer);
         }}
     
     
@@ -159,7 +189,7 @@ document.addEventListener("submit", e => {
     let gifUrl = document.getElementById("postGIF").src;
 
     // Creating post object to store user post
-    let post = {title: postTitle, body: postBody, gifUrl: gifUrl}
+    let post = {title: postTitle, body: postBody, gifUrl: gifUrl, comments : []}
 
     let options = {
         method: 'POST',
@@ -244,5 +274,41 @@ function countCharacters() {
 
 postTitle.addEventListener('keydown', countCharacters);
 // EMOJI FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
+
+let allComments = ""
+
+// COMMENT FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- //
+
+function  postComment(button) {
+    let comment = `${button.id}`;
+    postNumber = comment.slice(-1);
+    comment = comment.slice(-1);
+
+    let commentContainer = document.getElementById(`commentContainer${comment}`);
+    console.log(commentContainer.id);
+
+    comment = document.getElementById(`commentField${comment}`).value;
+    allComments = (comment+postNumber);
+
+    let postedComment = document.createElement("p");
+
+    postedComment.textContent = comment;
+
+
+    commentContainer.appendChild(postedComment);
+    console.log(allComments);
+
+    let options = {
+        method: 'POST',
+        headers: {
+            'ContentType': 'application/json'
+        },
+        body: JSON.stringify(allComments)
+    };
+    
+    fetch('http://localhost:3000/comments', options)
+    .then(r => r.json())
+    .catch(console.warn);
+}
 
 
