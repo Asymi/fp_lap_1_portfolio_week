@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const fs = require('fs')  // Required to initialise JSON for backend
+const fs = require('fs');  // Required to initialise JSON for backend
+const { response } = require('express');
 
 const server = express()
 server.use(cors());
@@ -37,6 +38,22 @@ server.post('/posts', (req, res) => {
     fs.writeFileSync('data.JSON', data) 
 })
 
+// Comment route
+
+server.get('/comments', (req, res) => res.send(JSON.stringify(posts)));
+
+// post comments
+server.post('/comments', (req, res) => {
+    let newComment = req.body
+    let i = newComment.slice(-2, -1);
+    newComment = newComment.slice(1, -2);
+
+    posts[i].comments.push(newComment);
+    console.log(posts)
+    let data = JSON.stringify(posts, null, 2);
+    fs.writeFileSync('data.JSON', data)
+
+})
 
 
 server.listen(port, () => console.log(`We are live at http://localhost:${port}`));      

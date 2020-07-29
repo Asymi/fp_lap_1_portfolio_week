@@ -2,11 +2,41 @@
   {
     "title": "My first post",
     "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae felis consectetur, auctor enim non, ultricies ligula. Donec dapibus commodo mattis. Suspendisse potenti. Sed vel risus in arcu consectetur sagittis efficitur in risus. Morbi facilisis sem et eros efficitur molestie. Pellentesque eget neque eros. Donec scelerisque consequat interdum. Maecenas ultrices vestibulum purus, in dignissim nibh ultricies a. Proin mattis neque orci. Phasellus nibh velit, tempor non blandit et, cursus vitae risus. Mauris ut turpis a erat blandit luctus et eu diam. Aliquam consectetur interdum lectus, et ultrices mi dignissim nec. Proin sodales ac justo eget fringilla. Curabitur varius metus tortor, ac mollis quam accumsan viverra. Maecenas fermentum rhoncus rhoncus.",
-    "gifUrl": "https://media3.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif?cid=abae41c13l6oh8ya0xa0mrobk6dn2debtrt6ymjuqgnch8r4&rid=giphy.gif"
+    "gifUrl": "https://media3.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif?cid=abae41c13l6oh8ya0xa0mrobk6dn2debtrt6ymjuqgnch8r4&rid=giphy.gif",
+    "comments": [
+      "First Comment",
+      "Here's a comment",
+      "let's hope it sticks after refresh!",
+      "can it stick after closing the server though?",
+      "Yayyyy!"
+    ]
   },
   {
     "title": "Hello, can anyone see me?",
     "body": "I'm JSON",
-    "gifUrl": "https://media0.giphy.com/media/ASd0Ukj0y3qMM/giphy.gif?cid=abae41c194k4pi4x9k8n48uvplmr0lno3l8mjdysijpge55e&rid=giphy.gif"
+    "gifUrl": "https://media0.giphy.com/media/ASd0Ukj0y3qMM/giphy.gif?cid=abae41c194k4pi4x9k8n48uvplmr0lno3l8mjdysijpge55e&rid=giphy.gif",
+    "comments": [
+      "Second Comment",
+      "these"
+    ]
+  },
+  {
+    "title": "Testy",
+    "body": "Testy, lets see if comments is initialised!",
+    "gifUrl": "https://media1.giphy.com/media/7MZ0v9KynmiSA/giphy.gif?cid=abae41c1eh4215k7j2wpcl7k1eaoe1dx50n7t9nfbcq2uawl&rid=giphy.gif",
+    "comments": [
+      "Third Comment",
+      "Third Comment 2",
+      "work"
+    ]
+  },
+  {
+    "title": "Test",
+    "body": "Test",
+    "gifUrl": "https://media3.giphy.com/media/3q3QK6KyDVUBzih7hB/giphy.gif?cid=abae41c1f68arg6zi31bx6g9lmln2pknhof50zy7atngmg3y&rid=giphy.gif",
+    "comments": [
+      "Fourth Comment",
+      "too"
+    ]
   }
 ]
