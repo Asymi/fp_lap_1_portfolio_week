@@ -73,3 +73,8 @@ body {
     width: 200px;
     height: 200px;
 }
+
+.emojiContainer {
+    display: flex;
+    align-items: flex-start;
+}
