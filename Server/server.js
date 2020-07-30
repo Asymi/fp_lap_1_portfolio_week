@@ -53,4 +53,29 @@ server.post('/comments', (req, res) => {
 })
 
 
+//Write get request for emojis
+server.get('/emojis', (req, res) => res.send(JSON.stringify(posts)));
+
+//Write a post request that will add an emoji reaction to a variable and update the json file
+server.post('/emojis', (req, res) => {
+    let newReaction = JSON.parse(req.body)
+    console.log(newReaction);
+
+    let i = newReaction[0];
+    console.log(i);
+
+    let reactionType = newReaction[1];
+    console.log(reactionType);
+
+    newValue = newReaction[2];
+    console.log(newValue);
+
+    posts[i][reactionType] = newValue
+
+    let data = JSON.stringify(posts, null, 2);
+    fs.writeFileSync('data.JSON', data)
+
+})
+
+
 server.listen(port, () => console.log(`We are live at http://localhost:${port}`));      
