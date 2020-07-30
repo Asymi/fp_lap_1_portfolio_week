@@ -20,11 +20,16 @@ fetch('http://localhost:3000/posts')
 
 // Initialise comment form and comment container (to view all comments), append into postContainer -------------------------------------------------------------------------------- //
 
+        let showComments = document.createElement("input");
+        showComments.setAttribute("type", "button");
+        showComments.id = `showComments${i}`;
+        showComments.setAttribute("onclick", "showComments(this)");
         let commentForm = document.createElement("form"); 
         let commentField = document.createElement("input");
         let commentSubmit = document.createElement("input");
         let commentContainer = document.createElement("section"); //Creates section where all comments can be viewed
         commentContainer.id = `commentContainer${i}`; // assigns comment container a unique id based on the position of the post
+        commentContainer.style.display = "none";
         commentForm.id = `commentForm${i}`;
         commentField.setAttribute("type", "text");
         commentField.id = `commentField${i}`;
@@ -36,10 +41,12 @@ fetch('http://localhost:3000/posts')
 
         commentForm.appendChild(commentField);
         commentForm.appendChild(commentSubmit);
+        commentContainer.appendChild(commentForm);
 
         // Display all previous posted comments
         let previousComments = postObject.comments;
         for (let i = 0; i <= previousComments.length; i++) {
+            showComments.setAttribute("value", `Comments (${previousComments.length})`);
             let commentElement = document.createElement("p")
             let comment = postObject.comments[i];
             commentElement.textContent = comment;
@@ -57,7 +64,7 @@ fetch('http://localhost:3000/posts')
             article.appendChild(articleBody);
             article.appendChild(articleGIF);
             postContainer.appendChild(article);
-            postContainer.appendChild(commentForm);
+            postContainer.appendChild(showComments);
             postContainer.appendChild(commentContainer);
         }}
     
@@ -279,9 +286,24 @@ postTitle.addEventListener('keydown', countCharacters);
 
 // COMMENT FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- //
 
-let commentToPost = ""
+// Show comments button functionality
+
+function showComments(button) {
+    let containerNumber = `${button.id.slice(-1)}`;
+    let x = document.getElementById(`commentContainer${containerNumber}`);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+
+}
+
 
 // Function called when post comment button is pressed
+
+let commentToPost = ""
+
 function  postComment(button) {
     let comment = `${button.id}`;
     postNumber = comment.slice(-1); 
