@@ -20,15 +20,15 @@ fetch('http://localhost:3000/posts')
 
 // Initialise comment form and comment container (to view all comments), append into postContainer -------------------------------------------------------------------------------- //
 
-        let commentForm = document.createElement("form");
+        let commentForm = document.createElement("form"); 
         let commentField = document.createElement("input");
         let commentSubmit = document.createElement("input");
         let commentContainer = document.createElement("section"); //Creates section where all comments can be viewed
-        commentContainer.id = `commentContainer${i}`;
+        commentContainer.id = `commentContainer${i}`; // assigns comment container a unique id based on the position of the post
         commentForm.id = `commentForm${i}`;
         commentField.setAttribute("type", "text");
         commentField.id = `commentField${i}`;
-        commentSubmit.setAttribute("type", "button");
+        commentSubmit.setAttribute("type", "button");  
         commentSubmit.setAttribute("value", "Click to add comment");
         commentSubmit.setAttribute("onclick", "postComment(this)")
         commentSubmit.id = `commentSubmit${i}`;
@@ -37,7 +37,7 @@ fetch('http://localhost:3000/posts')
         commentForm.appendChild(commentField);
         commentForm.appendChild(commentSubmit);
 
-        // Display previous comments
+        // Display all previous posted comments
         let previousComments = postObject.comments;
         for (let i = 0; i <= previousComments.length; i++) {
             let commentElement = document.createElement("p")
@@ -275,35 +275,33 @@ function countCharacters() {
 postTitle.addEventListener('keydown', countCharacters);
 // EMOJI FUNCTIONALITY END ------------------------------------------------------------------------------------------------------------------- //
 
-let allComments = ""
+
 
 // COMMENT FUNCTIONALITY START ------------------------------------------------------------------------------------------------------------------- //
 
+let commentToPost = ""
+
+// Function called when post comment button is pressed
 function  postComment(button) {
     let comment = `${button.id}`;
-    postNumber = comment.slice(-1);
-    comment = comment.slice(-1);
+    postNumber = comment.slice(-1); 
 
-    let commentContainer = document.getElementById(`commentContainer${comment}`);
-    console.log(commentContainer.id);
+    let commentContainer = document.getElementById(`commentContainer${postNumber}`);
 
-    comment = document.getElementById(`commentField${comment}`).value;
-    allComments = (comment+postNumber);
+    comment = document.getElementById(`commentField${postNumber}`).value;
+    commentToPost = (comment+postNumber);
 
     let postedComment = document.createElement("p");
-
     postedComment.textContent = comment;
 
-
     commentContainer.appendChild(postedComment);
-    console.log(allComments);
 
     let options = {
         method: 'POST',
         headers: {
             'ContentType': 'application/json'
         },
-        body: JSON.stringify(allComments)
+        body: JSON.stringify(commentToPost)
     };
     
     fetch('http://localhost:3000/comments', options)
